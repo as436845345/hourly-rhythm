@@ -6,6 +6,8 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+// Tabs Docs: https://docs.expo.dev/router/advanced/tabs/
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
