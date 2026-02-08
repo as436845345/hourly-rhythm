@@ -10,10 +10,10 @@
 
 #### 1. 安装 Andriod Studio
 
-[Set Up Your Environment - React Native Docs](https://reactnative.dev/docs/set-up-your-environment)
-[Set up your environment - Expo Docs](https://docs.expo.dev/get-started/set-up-your-environment/?platform=android&device=simulated)
+`Android Studio` 可以通过 `JetBrains Toolbox` 安装，`JDK` 安装查看第一个链接；`Android Studio` 的配置和模拟器的安装查看第二个链接。
 
-`Android Studio` 可以通过 `JetBrains Toolbox` 安装，`JDK` 安装推荐查看上面第一个链接；`Android Studio` 的配置和模拟器的安装查看第二个链接。
+- [Set Up Your Environment - React Native Docs](https://reactnative.dev/docs/set-up-your-environment)
+- [Set up your environment - Expo Docs](https://docs.expo.dev/get-started/set-up-your-environment/?platform=android&device=simulated)
 
 #### 2. 获取项目
 
