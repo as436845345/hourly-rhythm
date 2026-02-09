@@ -62,3 +62,19 @@
   - 开启1次；
   - 无限；
 - 开启按钮/结束按钮。
+
+## 链接
+
+#### Stack
+
+- [Stack - Expo Docs](https://docs.expo.dev/router/advanced/stack/)
+
+#### Tabs
+
+- [Tabs - Expo Docs](https://docs.expo.dev/router/advanced/tabs/)
+
+#### Icons
+
+- [icomoon](https://icomoon.io/app/#/select/font)
+- [iconfont](https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=5125027)
+- [createiconsetfromicomoon - Expo Docs](https://docs.expo.dev/guides/icons/#createiconsetfromicomoon)
