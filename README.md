@@ -78,3 +78,4 @@
 - [icomoon](https://icomoon.io/app/#/select/font)
 - [iconfont](https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=5125027)
 - [createiconsetfromicomoon - Expo Docs](https://docs.expo.dev/guides/icons/#createiconsetfromicomoon)
+- [@expo/vector-icons 图标大全](https://icons.expo.fyi/Index)
