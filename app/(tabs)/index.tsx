@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+
 import { Ionicons } from '@expo/vector-icons';
+
+import { GlobalStyles } from '@/constants/style';
 
 // 从 Ionicons 组件中提取出所有合法的 name 类型
 type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
@@ -21,7 +24,7 @@ export default function MusicPlayScreen() {
     };
 
     return (
-        <Text style={styles.container}>
+        <Text style={GlobalStyles.container}>
             {/* 1. 顶部信息区 */}
             <View style={styles.header}>
                 <Text style={styles.musicName}>播放中: {musicName}</Text>
@@ -59,11 +62,6 @@ export default function MusicPlayScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, // 占满整个屏幕
-        display: 'flex',
-        flexDirection: 'column', // 垂直布局
-    },
     header: {
         padding: 16,
         alignItems: 'center',
