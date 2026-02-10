@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, Platform, StyleProp, ViewStyle } from 'react-native';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 type Props = {
-    height?: number
+    height?: number,
+    style?: StyleProp<ViewStyle>,
 }
 
-export default function SearchBar({ height, ...otherProps }: Props) {
+export default function SearchBar({ height, style, ...otherProps }: Props) {
     // 定义 Web 端专属样式（用 any 绕过 TS 类型检查）
     const webInputStyles = Platform.OS === 'web'
         ? ({ outlineStyle: 'none' } as any)
@@ -29,7 +30,7 @@ export default function SearchBar({ height, ...otherProps }: Props) {
     };
 
     return (
-        <View style={[styles.container, { height: height || 32 }]} {...otherProps}>
+        <View style={[styles.container, style, { height: height || 32 }]} {...otherProps}>
             {/* 左侧放大镜图标 */}
             <Ionicons name="search" size={16} color="#888" style={styles.leftIcon} />
 
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
         borderRadius: 8, // 圆角
         borderWidth: 1,
         borderColor: '#d0d0d0', // 细边框
-        margin: 10,
         padding: 8,
     },
     leftIcon: {

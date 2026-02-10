@@ -79,3 +79,8 @@
 - [iconfont](https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=5125027)
 - [createiconsetfromicomoon - Expo Docs](https://docs.expo.dev/guides/icons/#createiconsetfromicomoon)
 - [@expo/vector-icons 图标大全](https://icons.expo.fyi/Index)
+
+#### List
+
+- [FlashList Docs](https://shopify.github.io/flash-list/docs/)
+- [flatlist - React Native Docs](https://reactnative.dev/docs/flatlist)
