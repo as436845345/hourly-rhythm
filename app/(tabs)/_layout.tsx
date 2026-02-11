@@ -1,5 +1,4 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
 
 import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { HapticTab } from '@/components/haptic-tab';

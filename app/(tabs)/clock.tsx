@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Dimensions, useWindowDimensions } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
