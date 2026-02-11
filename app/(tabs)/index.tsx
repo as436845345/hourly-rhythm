@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { GlobalStyles } from '@/constants/style';
 
@@ -24,7 +26,7 @@ export default function MusicPlayScreen() {
     };
 
     return (
-        <Text style={GlobalStyles.container}>
+        <SafeAreaView style={GlobalStyles.container}>
             {/* 1. 顶部信息区 */}
             <View style={styles.header}>
                 <Text style={styles.musicName}>播放中: {musicName}</Text>
@@ -57,7 +59,7 @@ export default function MusicPlayScreen() {
                     <Ionicons name="repeat" size={24} color="#333" />
                 </TouchableOpacity>
             </View>
-        </Text>
+        </SafeAreaView>
     )
 }
 

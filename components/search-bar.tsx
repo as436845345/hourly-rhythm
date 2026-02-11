@@ -27,7 +27,7 @@ export default function SearchBar({ height, style, ...otherProps }: Props) {
     };
 
     return (
-        <View style={[styles.container, style, { height: height || 32 }]} {...otherProps}>
+        <View style={[styles.container, style, { height: height || 40 }]} {...otherProps}>
             {/* 左侧放大镜图标 */}
             <Ionicons name="search" size={16} color="#888" style={styles.leftIcon} />
 

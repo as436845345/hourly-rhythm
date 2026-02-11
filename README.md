@@ -65,6 +65,10 @@
 
 ## 链接
 
+#### Text
+
+- [Safe areas - Expo Docs](https://docs.expo.dev/develop/user-interface/safe-areas/)
+
 #### Stack
 
 - [Stack - Expo Docs](https://docs.expo.dev/router/advanced/stack/)
@@ -90,4 +94,4 @@
 
 #### SelectionList
 
-- [Picker - Github](https://github.com/react-native-picker)
+- [Picker - Github](https://github.com/react-native-picker/picker)

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { GlobalStyles, WebNoOutlineStyles } from '@/constants/style';
 
@@ -32,9 +33,9 @@ export default function ClockScreen() {
     const [waitTime, setWaitTime] = useState(5); // 等待时间：1-10分钟
 
     return (
-        <Text style={GlobalStyles.container}>
+        <SafeAreaView style={GlobalStyles.container}>
             {/* 闹钟次数 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>闹钟次数</Text>
                 <View style={styles.timesContainer}>
                     {countOptions.map((count) => (
@@ -54,10 +55,10 @@ export default function ClockScreen() {
                         </TouchableOpacity>
                     ))}
                 </View>
-            </Text>
+            </View>
 
             {/* 等待时间 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>等待时间</Text>
 
                 <Picker style={[styles.picker, WebNoOutlineStyles]}>
@@ -90,17 +91,17 @@ export default function ClockScreen() {
                         </TouchableOpacity>
                     ))}
                 </View>
-            </Text>
+            </View>
 
             {/* 闹钟模式 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>闹钟模式</Text>
 
                 <Picker style={[styles.picker, WebNoOutlineStyles]}>
                     <Item label="开启1次" value="1" />
                     <Item label="无限" value="0" />
                 </Picker>
-            </Text>
+            </View>
 
             {/* 开启/结束 按钮 */}
             <View style={styles.buttonGroup}>
@@ -111,7 +112,7 @@ export default function ClockScreen() {
                     <Text style={styles.confirmButtonText}>结束</Text>
                 </TouchableOpacity>
             </View>
-        </Text>
+        </SafeAreaView>
     )
 }
 
