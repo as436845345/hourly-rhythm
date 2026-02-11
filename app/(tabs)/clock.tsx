@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, Dimensions, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform, useWindowDimensions } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
 
-import { GlobalStyles } from '@/constants/style';
+import { GlobalStyles, WebNoOutlineStyles } from '@/constants/style';
 
 const Item: any = Picker.Item;
 
@@ -22,11 +22,6 @@ const Item: any = Picker.Item;
 // ```
 
 export default function ClockScreen() {
-    // 定义 Web 端专属样式（用 any 绕过 TS 类型检查）
-    const webInputStyles = Platform.OS === 'web'
-        ? ({ outlineStyle: 'none' } as any)
-        : {};
-
     // 获取屏幕宽度
     const width = useWindowDimensions().width;
 
@@ -37,7 +32,7 @@ export default function ClockScreen() {
     const [waitTime, setWaitTime] = useState(5); // 等待时间：1-10分钟
 
     return (
-        <Text style={[GlobalStyles.container, { padding: 10 }]}>
+        <Text style={GlobalStyles.container}>
             {/* 闹钟次数 */}
             <Text style={styles.group}>
                 <Text style={styles.title}>闹钟次数</Text>
@@ -65,7 +60,7 @@ export default function ClockScreen() {
             <Text style={styles.group}>
                 <Text style={styles.title}>等待时间</Text>
 
-                <Picker style={[{ height: 35, borderRadius: 8, marginBottom: 10 }, webInputStyles]}>
+                <Picker style={[styles.picker, WebNoOutlineStyles]}>
                     <Item label="5分钟" value="5" />
                     <Item label="10分钟" value="10" />
                     <Item label="15分钟" value="15" />
@@ -101,7 +96,7 @@ export default function ClockScreen() {
             <Text style={styles.group}>
                 <Text style={styles.title}>闹钟模式</Text>
 
-                <Picker style={[{ height: 35, borderRadius: 8 }, webInputStyles]}>
+                <Picker style={[styles.picker, WebNoOutlineStyles]}>
                     <Item label="开启1次" value="1" />
                     <Item label="无限" value="0" />
                 </Picker>
@@ -157,6 +152,11 @@ const styles = StyleSheet.create({
     },
     countButtonTextActive: {
         color: '#fff',
+    },
+    picker: {
+        height: 35,
+        borderRadius: 8,
+        marginBottom: 10
     },
     // 等待时间选项网格
     waitTimeGrid: {

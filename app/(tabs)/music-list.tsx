@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import { FlashList } from "@shopify/flash-list";
 
-import { GlobalStyles } from '@/constants/style';
 import SearchBar from '@/components/search-bar';
+import { GlobalStyles } from '@/constants/style';
 
 type MusicProps = {
     id: string;
@@ -51,7 +51,7 @@ export default function MusicListScreen() {
     };
 
     return (
-        <Text style={[GlobalStyles.container, { padding: 10 }]}>
+        <Text style={GlobalStyles.container}>
             <SearchBar style={{ marginBottom: 10 }} />
 
             <FlashList
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
         borderRadius: 8,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: '#eee',
+        paddingVertical: 10,
     },
     cover: {
         width: 40,

@@ -63,7 +63,6 @@ export default function MusicPlayScreen() {
 
 const styles = StyleSheet.create({
     header: {
-        padding: 16,
         alignItems: 'center',
     },
     musicName: {
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd', // 图片加载前的占位色
     },
     buttonRow: {
-        padding: 16,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',

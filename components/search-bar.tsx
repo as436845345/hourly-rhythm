@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Platform, StyleProp, ViewStyle } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+import { WebNoOutlineStyles } from '@/constants/style';
 
 type Props = {
     height?: number,
@@ -9,11 +11,6 @@ type Props = {
 }
 
 export default function SearchBar({ height, style, ...otherProps }: Props) {
-    // 定义 Web 端专属样式（用 any 绕过 TS 类型检查）
-    const webInputStyles = Platform.OS === 'web'
-        ? ({ outlineStyle: 'none' } as any)
-        : {};
-
     const [searchText, setSearchText] = useState('');
     const [isLoading, setIsLoading] = useState(false); // 模拟加载状态
 
@@ -36,7 +33,7 @@ export default function SearchBar({ height, style, ...otherProps }: Props) {
 
             {/* 输入框 */}
             <TextInput
-                style={[styles.input, webInputStyles]}
+                style={[styles.input, WebNoOutlineStyles]}
                 value={searchText}
                 onChangeText={setSearchText}
                 placeholder="Search"
