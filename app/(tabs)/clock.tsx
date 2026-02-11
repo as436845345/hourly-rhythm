@@ -100,11 +100,22 @@ export default function ClockScreen() {
             {/* 闹钟模式 */}
             <Text style={styles.group}>
                 <Text style={styles.title}>闹钟模式</Text>
+
+                <Picker style={[{ height: 35, borderRadius: 8 }, webInputStyles]}>
+                    <Item label="开启1次" value="1" />
+                    <Item label="无限" value="0" />
+                </Picker>
             </Text>
 
             {/* 开启/结束 按钮 */}
-            <Text>
-            </Text>
+            <View style={styles.buttonGroup}>
+                <TouchableOpacity style={styles.cancelButton}>
+                    <Text style={styles.cancelButtonText}>开启</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.confirmButton}>
+                    <Text style={styles.confirmButtonText}>结束</Text>
+                </TouchableOpacity>
+            </View>
         </Text>
     )
 }
@@ -170,6 +181,35 @@ const styles = StyleSheet.create({
         color: '#000',
     },
     waitTimeButtonTextActive: {
+        color: '#fff',
+    },
+    // 底部按钮组
+    buttonGroup: {
+        flexDirection: 'row',
+        gap: 12,
+    },
+    cancelButton: {
+        flex: 1,
+        padding: 12,
+        borderRadius: 8,
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#e0e0e0',
+        alignItems: 'center',
+    },
+    cancelButtonText: {
+        fontSize: 16,
+        color: '#000',
+    },
+    confirmButton: {
+        flex: 1,
+        padding: 12,
+        borderRadius: 8,
+        backgroundColor: '#000',
+        alignItems: 'center',
+    },
+    confirmButtonText: {
+        fontSize: 16,
         color: '#fff',
     },
 });
