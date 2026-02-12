@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'r
 import { Picker } from '@react-native-picker/picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { GlobalStyles, WebNoOutlineStyles } from '@/constants/style';
+import { GlobalStyles } from '@/constants/style';
 
 const Item: any = Picker.Item;
 
@@ -61,13 +61,15 @@ export default function ClockScreen() {
             <View style={styles.group}>
                 <Text style={styles.title}>等待时间</Text>
 
-                <Picker style={[styles.picker, WebNoOutlineStyles]}>
-                    <Item label="5分钟" value="5" />
-                    <Item label="10分钟" value="10" />
-                    <Item label="15分钟" value="15" />
-                    <Item label="20分钟" value="20" />
-                    <Item label="30分钟" value="30" />
-                </Picker>
+                <View style={styles.pickerWrapper}>
+                    <Picker mode="dropdown">
+                        <Item label="5分钟" value="5" />
+                        <Item label="10分钟" value="10" />
+                        <Item label="15分钟" value="15" />
+                        <Item label="20分钟" value="20" />
+                        <Item label="30分钟" value="30" />
+                    </Picker>
+                </View>
 
                 <View style={styles.waitTimeGrid}>
                     {waitTimeOptions.map((time) => (
@@ -97,10 +99,12 @@ export default function ClockScreen() {
             <View style={styles.group}>
                 <Text style={styles.title}>闹钟模式</Text>
 
-                <Picker style={[styles.picker, WebNoOutlineStyles]}>
-                    <Item label="开启1次" value="1" />
-                    <Item label="无限" value="0" />
-                </Picker>
+                <View style={styles.pickerWrapper}>
+                    <Picker mode="dropdown">
+                        <Item label="开启1次" value="1" />
+                        <Item label="无限" value="0" />
+                    </Picker>
+                </View>
             </View>
 
             {/* 开启/结束 按钮 */}
@@ -154,10 +158,16 @@ const styles = StyleSheet.create({
     countButtonTextActive: {
         color: '#fff',
     },
-    picker: {
-        height: 35,
+    // Picker 样式修正
+    pickerWrapper: {
+        backgroundColor: '#fff',
         borderRadius: 8,
-        marginBottom: 10
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#e0e0e0',
+        overflow: 'hidden', // 确保圆角生效
+        justifyContent: 'center',
+        height: 40, // 固定高度
     },
     // 等待时间选项网格
     waitTimeGrid: {
