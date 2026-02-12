@@ -79,15 +79,11 @@ export default function ClockScreen() {
                                 styles.waitTimeButton,
                                 waitTime === time && styles.waitTimeButtonActive,
                                 { width: (width - 48) / 4 }
-                            ]}
-                            onPress={() => setWaitTime(time)}
-                        >
-                            <Text
-                                style={[
-                                    styles.waitTimeButtonText,
-                                    waitTime === time && styles.waitTimeButtonTextActive,
-                                ]}
-                            >
+                            ]} onPress={() => setWaitTime(time)}>
+                            <Text style={[
+                                styles.waitTimeButtonText,
+                                waitTime === time && styles.waitTimeButtonTextActive,
+                            ]}>
                                 {time}分钟
                             </Text>
                         </TouchableOpacity>
