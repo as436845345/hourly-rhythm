@@ -67,6 +67,9 @@ export default function ClockScreen() {
                 <Text style={styles.title}>等待时间</Text>
 
                 <View style={styles.pickerWrapper}>
+                    {/**
+                     * Picker.Item 的 BackgroundColor 的颜色只能通过设置 Picker 的 BackgroundColor 来改变。
+                     */}
                     <Picker
                         mode="dropdown" selectedValue={waitTime}
                         onValueChange={(value, index) => {
@@ -77,7 +80,6 @@ export default function ClockScreen() {
                             <Item
                                 key={time}
                                 color={waitTime === time && '#007f00'}
-                                // style={waitTime === time ? { backgroundColor: 'red' } : null}
                                 label={`${time}分钟`} value={time} />
                         ))}
                     </Picker>
