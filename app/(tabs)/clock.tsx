@@ -67,10 +67,8 @@ export default function ClockScreen() {
                 <Text style={styles.title}>等待时间</Text>
 
                 <View style={styles.pickerWrapper}>
-                    {/**
-                     * Picker.Item 的 BackgroundColor 的颜色只能通过设置 Picker 的 BackgroundColor 来改变。
-                     */}
                     <Picker
+                        style={styles.pickerForceTextColor}
                         mode="dropdown" selectedValue={waitTime}
                         onValueChange={(value, index) => {
                             // value 传入的是字符串，需要转换为数字
@@ -79,6 +77,7 @@ export default function ClockScreen() {
                         {waitTimeOptions.map((time) => (
                             <Item
                                 key={time}
+                                style={waitTime === time && styles.waitTimeItemTextActive}
                                 color={waitTime === time && '#007f00'}
                                 label={`${time}分钟`} value={time} />
                         ))}
@@ -110,10 +109,15 @@ export default function ClockScreen() {
                 <Text style={styles.title}>闹钟模式</Text>
 
                 <View style={styles.pickerWrapper}>
-                    <Picker mode="dropdown" selectedValue={alarmMode} onValueChange={(value, index) => setAlarmMode(value)}>
+                    <Picker
+                        style={styles.pickerForceTextColor}
+                        mode="dropdown"
+                        selectedValue={alarmMode}
+                        onValueChange={(value, index) => setAlarmMode(value)}>
                         {alarmModeOptions.map((mode) => (
                             <Item
                                 key={mode.value}
+                                style={alarmMode === mode.value && styles.waitTimeItemTextActive}
                                 color={alarmMode === mode.value && '#007f00'}
                                 label={mode.label} value={mode.value} />
                         ))}
@@ -208,8 +212,11 @@ const styles = StyleSheet.create({
     waitTimeButtonTextActive: {
         color: '#fff',
     },
+    pickerForceTextColor: {
+        color: '#000',
+    },
     waitTimeItemTextActive: {
-        color: '#007f00'
+        color: '#007f00',
     },
     // 底部按钮组
     buttonGroup: {

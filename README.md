@@ -63,6 +63,22 @@
   - 无限；
 - 开启按钮/结束按钮。
 
+## 注意事项
+
+#### react-native-picker
+
+在 Android 上，Picker.Item 的 style 是有效的；但在 web 上无效。
+
+设置 Picker.item 的 color 属性：
+- Android：
+  - `style={waitTime === time && styles.waitTimeItemTextActive}`
+  - `color={waitTime === time && '#007f00'}`
+- Web：`color={waitTime === time && '#007f00'}`
+
+> 在 Android，设置了 Picker.Item 的 color 属性后，Picker 显示的字体的颜色也会被一起修改，因此需要在 Picker 的 style 中设置字体的颜色进行覆盖：`<Picker style={styles.pickerForceTextColor} ... />`。
+
+> (ˉ▽ˉ；)... 一堆 BUG。
+
 ## 链接
 
 #### Text
