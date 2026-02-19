@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { FlashList } from "@shopify/flash-list";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import SearchBar from '@/components/search-bar';
 import { GlobalStyles } from '@/constants/style';
@@ -51,7 +52,7 @@ export default function MusicListScreen() {
     };
 
     return (
-        <Text style={GlobalStyles.container}>
+        <SafeAreaView style={GlobalStyles.container}>
             <SearchBar style={{ marginBottom: 10 }} />
 
             <FlashList
@@ -59,7 +60,7 @@ export default function MusicListScreen() {
                 keyExtractor={item => item.id}
                 renderItem={renderItem}
             />
-        </Text>
+        </SafeAreaView>
     )
 }
 

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { GlobalStyles, WebNoOutlineStyles } from '@/constants/style';
+import { GlobalStyles } from '@/constants/style';
 
 const Item: any = Picker.Item;
 
@@ -27,14 +28,19 @@ export default function ClockScreen() {
 
     const countOptions = [1, 2, 3, 4, 5];
     const waitTimeOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const alarmModeOptions = [
+        { label: '开启1次', value: '1' },
+        { label: '无限', value: '0' },
+    ];
 
     const [alarmCount, setAlarmCount] = useState(1); // 闹铃次数：1/2/3/4/5
     const [waitTime, setWaitTime] = useState(5); // 等待时间：1-10分钟
+    const [alarmMode, setAlarmMode] = useState('1'); // 闹钟模式：开启1次/无限
 
     return (
-        <Text style={GlobalStyles.container}>
+        <SafeAreaView style={GlobalStyles.container}>
             {/* 闹钟次数 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>闹钟次数</Text>
                 <View style={styles.timesContainer}>
                     {countOptions.map((count) => (
@@ -54,19 +60,29 @@ export default function ClockScreen() {
                         </TouchableOpacity>
                     ))}
                 </View>
-            </Text>
+            </View>
 
             {/* 等待时间 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>等待时间</Text>
 
-                <Picker style={[styles.picker, WebNoOutlineStyles]}>
-                    <Item label="5分钟" value="5" />
-                    <Item label="10分钟" value="10" />
-                    <Item label="15分钟" value="15" />
-                    <Item label="20分钟" value="20" />
-                    <Item label="30分钟" value="30" />
-                </Picker>
+                <View style={styles.pickerWrapper}>
+                    <Picker
+                        style={styles.pickerForceTextColor}
+                        mode="dropdown" selectedValue={waitTime}
+                        onValueChange={(value, index) => {
+                            // value 传入的是字符串，需要转换为数字
+                            setWaitTime(Number(value));
+                        }}>
+                        {waitTimeOptions.map((time) => (
+                            <Item
+                                key={time}
+                                style={waitTime === time && styles.waitTimeItemTextActive}
+                                color={waitTime === time && '#007f00'}
+                                label={`${time}分钟`} value={time} />
+                        ))}
+                    </Picker>
+                </View>
 
                 <View style={styles.waitTimeGrid}>
                     {waitTimeOptions.map((time) => (
@@ -76,31 +92,38 @@ export default function ClockScreen() {
                                 styles.waitTimeButton,
                                 waitTime === time && styles.waitTimeButtonActive,
                                 { width: (width - 48) / 4 }
-                            ]}
-                            onPress={() => setWaitTime(time)}
-                        >
-                            <Text
-                                style={[
-                                    styles.waitTimeButtonText,
-                                    waitTime === time && styles.waitTimeButtonTextActive,
-                                ]}
-                            >
+                            ]} onPress={() => setWaitTime(time)}>
+                            <Text style={[
+                                styles.waitTimeButtonText,
+                                waitTime === time && styles.waitTimeButtonTextActive,
+                            ]}>
                                 {time}分钟
                             </Text>
                         </TouchableOpacity>
                     ))}
                 </View>
-            </Text>
+            </View>
 
             {/* 闹钟模式 */}
-            <Text style={styles.group}>
+            <View style={styles.group}>
                 <Text style={styles.title}>闹钟模式</Text>
 
-                <Picker style={[styles.picker, WebNoOutlineStyles]}>
-                    <Item label="开启1次" value="1" />
-                    <Item label="无限" value="0" />
-                </Picker>
-            </Text>
+                <View style={styles.pickerWrapper}>
+                    <Picker
+                        style={styles.pickerForceTextColor}
+                        mode="dropdown"
+                        selectedValue={alarmMode}
+                        onValueChange={(value, index) => setAlarmMode(value)}>
+                        {alarmModeOptions.map((mode) => (
+                            <Item
+                                key={mode.value}
+                                style={alarmMode === mode.value && styles.waitTimeItemTextActive}
+                                color={alarmMode === mode.value && '#007f00'}
+                                label={mode.label} value={mode.value} />
+                        ))}
+                    </Picker>
+                </View>
+            </View>
 
             {/* 开启/结束 按钮 */}
             <View style={styles.buttonGroup}>
@@ -111,7 +134,7 @@ export default function ClockScreen() {
                     <Text style={styles.confirmButtonText}>结束</Text>
                 </TouchableOpacity>
             </View>
-        </Text>
+        </SafeAreaView>
     )
 }
 
@@ -153,10 +176,16 @@ const styles = StyleSheet.create({
     countButtonTextActive: {
         color: '#fff',
     },
-    picker: {
-        height: 35,
+    // Picker 样式修正
+    pickerWrapper: {
+        backgroundColor: '#fff',
         borderRadius: 8,
-        marginBottom: 10
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#e0e0e0',
+        overflow: 'hidden', // 确保圆角生效
+        justifyContent: 'center',
+        height: 40, // 固定高度
     },
     // 等待时间选项网格
     waitTimeGrid: {
@@ -182,6 +211,12 @@ const styles = StyleSheet.create({
     },
     waitTimeButtonTextActive: {
         color: '#fff',
+    },
+    pickerForceTextColor: {
+        color: '#000',
+    },
+    waitTimeItemTextActive: {
+        color: '#007f00',
     },
     // 底部按钮组
     buttonGroup: {
