@@ -28,9 +28,14 @@ export default function ClockScreen() {
 
     const countOptions = [1, 2, 3, 4, 5];
     const waitTimeOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const alarmModeOptions = [
+        { label: '开启1次', value: '1' },
+        { label: '无限', value: '0' },
+    ];
 
     const [alarmCount, setAlarmCount] = useState(1); // 闹铃次数：1/2/3/4/5
     const [waitTime, setWaitTime] = useState(5); // 等待时间：1-10分钟
+    const [alarmMode, setAlarmMode] = useState('1'); // 闹钟模式：开启1次/无限
 
     return (
         <SafeAreaView style={GlobalStyles.container}>
@@ -62,12 +67,19 @@ export default function ClockScreen() {
                 <Text style={styles.title}>等待时间</Text>
 
                 <View style={styles.pickerWrapper}>
-                    <Picker mode="dropdown">
-                        <Item label="5分钟" value="5" />
-                        <Item label="10分钟" value="10" />
-                        <Item label="15分钟" value="15" />
-                        <Item label="20分钟" value="20" />
-                        <Item label="30分钟" value="30" />
+                    <Picker
+                        mode="dropdown" selectedValue={waitTime}
+                        onValueChange={(value, index) => {
+                            // value 传入的是字符串，需要转换为数字
+                            setWaitTime(Number(value));
+                        }}>
+                        {waitTimeOptions.map((time) => (
+                            <Item
+                                key={time}
+                                color={waitTime === time && '#007f00'}
+                                // style={waitTime === time ? { backgroundColor: 'red' } : null}
+                                label={`${time}分钟`} value={time} />
+                        ))}
                     </Picker>
                 </View>
 
@@ -96,9 +108,13 @@ export default function ClockScreen() {
                 <Text style={styles.title}>闹钟模式</Text>
 
                 <View style={styles.pickerWrapper}>
-                    <Picker mode="dropdown">
-                        <Item label="开启1次" value="1" />
-                        <Item label="无限" value="0" />
+                    <Picker mode="dropdown" selectedValue={alarmMode} onValueChange={(value, index) => setAlarmMode(value)}>
+                        {alarmModeOptions.map((mode) => (
+                            <Item
+                                key={mode.value}
+                                color={alarmMode === mode.value && '#007f00'}
+                                label={mode.label} value={mode.value} />
+                        ))}
                     </Picker>
                 </View>
             </View>
@@ -189,6 +205,9 @@ const styles = StyleSheet.create({
     },
     waitTimeButtonTextActive: {
         color: '#fff',
+    },
+    waitTimeItemTextActive: {
+        color: '#007f00'
     },
     // 底部按钮组
     buttonGroup: {
